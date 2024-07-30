@@ -6,12 +6,19 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
+
+import static java.lang.System.out;
 
 public class InformePage {
     @FindBy(id = "sec")
     private WebElement header;
+    @FindBy(xpath = "//a[@href='https://www.efap.com/agenda/portes-ouvertes' and text()='Portes ouvertes']")
+            private WebElement porteOuvrte;
     WebDriver driver;
     public InformePage(WebDriver driver){
         this.driver = driver;
@@ -20,16 +27,16 @@ public class InformePage {
 
     public String getUrlPage(){
         String URL = driver.getCurrentUrl();
-        System.out.println(URL);
+        out.println(URL);
         return URL;
     }
     public void getliste(String text){
         List<WebElement> Liste= header.findElements(By.tagName("a"));
 
-        System.out.println("Found " + Liste.size() + " elements inside the header:");
+        out.println("Found " + Liste.size() + " elements inside the header:");
         for (WebElement element:Liste){
             String textElement = element.getText();
-            System.out.println(textElement);
+            out.println(textElement);
 
             if (textElement.equals(text)){
                 moveToElement(element);
@@ -37,16 +44,25 @@ public class InformePage {
             }
 
         }
-         System.out.println("je ne trouve pas ");
+         out.println("je ne trouve pas ");
     }
     public void moveToElement(WebElement element){
         Actions actions = new Actions(driver);
 
         actions.moveToElement(element).perform();
+        out.println(porteOuvrte.getText());
 
-        if (element.getText().equals(0)){
-            System.out.println("l'element est bien survoler");
+         new WebDriverWait(driver, Duration.ofSeconds(5));
 
+        if (porteOuvrte.isDisplayed()){
+        porteOuvrte.click();
+        }else {
+            out.println("erreur");
         }
+
+
+
+
+
     }
 }
