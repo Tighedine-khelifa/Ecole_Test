@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="1e09f809-443e-4c00-949d-bd8a3f3cc57d" name="Changes" comment="Tester la page Nous rencontrer">
       <change beforePath="$PROJECT_DIR$/../Git/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../Git/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,7 +17,8 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "git-widget-placeholder": "f85ca440"
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "02ae58eb"
   }
 }]]></component>
   <component name="TaskManager">
