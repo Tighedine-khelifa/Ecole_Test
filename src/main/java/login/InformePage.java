@@ -79,7 +79,10 @@ public class InformePage {
                 // Optionnel : arrêter la boucle après avoir cliqué sur l'élément
                 break;
             }
+
         }
     }
+
+
 
 }

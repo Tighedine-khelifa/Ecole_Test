@@ -2,9 +2,10 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import login.InformePage;
 import login.LoginPage;
+import login.NosActivitesPage;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 
 import java.time.Duration;
@@ -43,6 +44,7 @@ public class TestBase {
         Assertions.assertEquals(loginPage2.getMerci(),"Merci","rien");
         loginPage2.clickInfomerPage();
 
+
     }
     @Test
     public void t003_informertest(){
@@ -52,9 +54,15 @@ public class TestBase {
 
     }
     @Test
-    public void t004_nouActualités(){
+    public void t004_nosActualités(){
         InformePage informePage = new InformePage(driver);
         informePage.getliste("NOS ACTUALITÉS");
         informePage.clickFestivalDeCannes("FESTIVAL DE CANNES");
+    }
+    @Test
+    public void t005_nosActivités(){
+        NosActivitesPage nosActivitesPage = new NosActivitesPage(driver);
+        nosActivitesPage.getTitleNosActivites();
+        nosActivitesPage.clickFestivaleDeCannes();
     }
 }

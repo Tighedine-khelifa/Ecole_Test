@@ -1,5 +1,6 @@
 package login;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -109,6 +110,7 @@ public class LoginPage {
     public String getMerci(){
         return merci.getText();
     }
+
 
     public InformePage clickInfomerPage(){
         informerButtton.click();
