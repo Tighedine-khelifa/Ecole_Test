@@ -64,4 +64,10 @@ public class TestBase {
         nosActivitesPage.getTitleNosActivites();
         nosActivitesPage.clickFestivaleDeCannes();
     }
+
+    @Test
+    public void t006_lesProgrammes(){
+        InformePage informePage = new InformePage(driver);
+        informePage.getliste("LES PROGRAMMES");
+    }
 }
