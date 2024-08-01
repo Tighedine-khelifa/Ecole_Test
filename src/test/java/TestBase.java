@@ -51,7 +51,6 @@ public class TestBase {
        InformePage informerPage = new InformePage(driver);
         informerPage.getUrlPage();
         informerPage.getliste("NOUS RENCONTRER");
-
     }
     @Test
     public void t004_nosActualités(){
