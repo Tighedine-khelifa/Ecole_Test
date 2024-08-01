@@ -51,4 +51,10 @@ public class TestBase {
         informerPage.getliste("NOUS RENCONTRER");
 
     }
+    @Test
+    public void t004_nouActualités(){
+        InformePage informePage = new InformePage(driver);
+        informePage.getliste("NOS ACTUALITÉS");
+        informePage.clickFestivalDeCannes("FESTIVAL DE CANNES");
+    }
 }

@@ -60,9 +60,26 @@ public class InformePage {
             out.println("erreur");
         }
 
-
-
-
-
     }
+
+    public void clickFestivalDeCannes(String element) {
+        // Trouver tous les éléments <li> dans la liste <ul> avec la classe spécifiée
+        List<WebElement> list = driver.findElements(By.xpath("//ul[@class='five-columns two-rows active']/li"));
+
+        // Parcourir chaque élément <li> trouvé
+        for (WebElement listItem : list) {
+            // Obtenir le texte de l'élément <li> actuel
+            String text = listItem.getText();
+            System.out.println(text);
+
+            // Vérifier si le texte de l'élément <li> correspond au texte recherché
+            if (text.equals(element)) {
+                // Cliquer sur l'élément <li> correspondant
+                listItem.click();
+                // Optionnel : arrêter la boucle après avoir cliqué sur l'élément
+                break;
+            }
+        }
+    }
+
 }
