@@ -70,6 +70,14 @@ public class TestBase {
         LesProgrammePage lesProgrammePage  = new LesProgrammePage(driver);
         homePage.getliste("LES PROGRAMMES");
         lesProgrammePage.listProgramme("VAE");
+        Assertions.assertTrue(homePage.getUrlPage().contains("vae-formation-continue"),"Erreur de page");
+
+    }
+    @Test
+    public  void t007_getDocument(){
+        LesProgrammePage lesProgrammePage =new LesProgrammePage(driver);
+        lesProgrammePage.clickTelechargement();
+
 
     }
 }

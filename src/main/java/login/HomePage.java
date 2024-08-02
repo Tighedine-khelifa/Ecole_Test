@@ -25,7 +25,7 @@ public class HomePage {
 
     public String getUrlPage(){
         String URL = driver.getCurrentUrl();
-        out.println(URL);
+        System.out.println(URL);
         return URL;
     }
     public void getliste(String text){
