@@ -1,11 +1,8 @@
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import login.InformePage;
-import login.LoginPage;
-import login.NosActivitesPage;
+import login.*;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 
 import java.time.Duration;
@@ -48,26 +45,31 @@ public class TestBase {
     }
     @Test
     public void t003_informertest(){
-       InformePage informerPage = new InformePage(driver);
-        informerPage.getUrlPage();
-        informerPage.getliste("NOUS RENCONTRER");
+       HomePage homePage = new HomePage(driver);
+        homePage.getUrlPage();
+        homePage.getliste("NOUS RENCONTRER");
     }
     @Test
     public void t004_nosActualités(){
-        InformePage informePage = new InformePage(driver);
-        informePage.getliste("NOS ACTUALITÉS");
-        informePage.clickFestivalDeCannes("FESTIVAL DE CANNES");
+        HomePage homePage = new HomePage(driver);
+        FestivalDeCannesPage festivalDeCannesPage = new FestivalDeCannesPage(driver);
+        homePage.getliste("NOS ACTUALITÉS");
+        festivalDeCannesPage.optionHeader("FESTIVAL DE CANNES");
     }
+
     @Test
     public void t005_nosActivités(){
         NosActivitesPage nosActivitesPage = new NosActivitesPage(driver);
         nosActivitesPage.getTitleNosActivites();
-        nosActivitesPage.clickFestivaleDeCannes();
+        nosActivitesPage.clickFestivaleDeCannesBas();
     }
 
     @Test
     public void t006_lesProgrammes(){
-        InformePage informePage = new InformePage(driver);
-        informePage.getliste("LES PROGRAMMES");
+        HomePage homePage = new HomePage(driver);
+        LesProgrammePage lesProgrammePage  = new LesProgrammePage(driver);
+        homePage.getliste("LES PROGRAMMES");
+        lesProgrammePage.listProgramme("VAE");
+
     }
 }

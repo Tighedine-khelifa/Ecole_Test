@@ -28,7 +28,8 @@ public class NosActivitesPage {
         System.out.println(title);
         return title;
     }
-    public void clickFestivaleDeCannes(){
+
+    public void clickFestivaleDeCannesBas(){
         Actions action = new Actions(driver);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
         wait.until(ExpectedConditions.visibilityOf(festivalDeCannes));

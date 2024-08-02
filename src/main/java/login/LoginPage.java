@@ -1,6 +1,5 @@
 package login;
 
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -112,9 +111,9 @@ public class LoginPage {
     }
 
 
-    public InformePage clickInfomerPage(){
+    public HomePage clickInfomerPage(){
         informerButtton.click();
-        return new InformePage(driver);
+        return new HomePage(driver);
     }
 }
 
