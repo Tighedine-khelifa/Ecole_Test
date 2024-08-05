@@ -2,19 +2,35 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import login.*;
 import org.junit.jupiter.api.*;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 
 import java.time.Duration;
 @TestMethodOrder(MethodOrderer.MethodName.class)
 
 public class TestBase {
+    public static String browser = "edge" ;
+    public static WebDriver driver;
 
-    static ChromeDriver driver;
     @BeforeAll
     public static void SetUp(){
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+        if (browser.equals("chrome")){
+            WebDriverManager.chromedriver().setup();
+            driver = new ChromeDriver();
+        } else if (browser.equals("Firefox")) {
+            WebDriverManager.firefoxdriver().setup();
+            driver = new FirefoxDriver();
+            
+        } else if (browser.equals("edge")) {
+            WebDriverManager.edgedriver().setup();
+            driver = new EdgeDriver();
+            
+        }
+
+
         driver.get("https://www.efap.com/agenda");
         driver.manage().window().maximize();
 
@@ -76,8 +92,17 @@ public class TestBase {
     @Test
     public  void t007_getDocument(){
         LesProgrammePage lesProgrammePage =new LesProgrammePage(driver);
+        HomePage homePage = new HomePage(driver);
         lesProgrammePage.clickTelechargement();
+        lesProgrammePage.clickMbaSpcialises();
+        homePage.getUrlPage();
+        lesProgrammePage.ouvrirUneNouvelleFenetre("MBA Communication Spécialisés EFAP - École de Communication EFAP");
 
-
+    }
+    @Test
+    public void t008_choixDesSpécialites(){
+        MbaSpecialitesPage mbaSpecialitesPage = new MbaSpecialitesPage(driver);
+        mbaSpecialitesPage.selectLesThematiques("Luxe");
+        mbaSpecialitesPage.selectCity("Paris");
     }
 }

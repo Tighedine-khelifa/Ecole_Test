@@ -15,12 +15,15 @@ import java.util.Set;
 public class LesProgrammePage {
     @FindBy(id="download")
     private WebElement telecharger;
-    private WebDriver.Navigation navigate;
+    @FindBy(xpath = "//div/a[@href='https://www.efap.com/formation-communication/mba-specialises-communication' and text()='MBA spécialisés']")
+    private WebElement mbaButton;
     WebDriver driver;
+    private WebDriver.Navigation navigate;
     public  LesProgrammePage(WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver,this);
         navigate = driver.navigate();
+
     }
     public void listProgramme(String element){
      Actions actions = new Actions(driver);
@@ -32,6 +35,7 @@ public class LesProgrammePage {
             if (listePro.equals(element)){
                 actions.moveToElement(liste).perform();
                 liste.click();
+
                 break;
             }
 
@@ -44,7 +48,28 @@ public class LesProgrammePage {
         if(buttons.size()>=2){
            WebElement buttons1 = buttons.get(1);
            buttons1.click();
+
         }
+    }
+    public MbaSpecialitesPage clickMbaSpcialises(){
+        mbaButton.click();
+        return new MbaSpecialitesPage(driver);
+    }
+
+    public void ouvrirUneNouvelleFenetre(String title){
+       var windows =  driver.getWindowHandles();
+       System.out.println(windows);
+       for(String window :windows){
+           driver.switchTo().window(window);
+           System.out.println(driver.getTitle());
+
+           if(title.equals(driver.getTitle())){
+               break;
+           }
+       }
+
+
+
     }
 
 
