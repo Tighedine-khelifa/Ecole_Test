@@ -45,12 +45,25 @@
             <version>1.10.2</version>
             <scope>test</scope>
         </dependency>
+
+
     </dependencies>
-    <!-- Ajoutez la configuration du plugin Maven Surefire à l'intérieur de la balise <build> -->
+    <!-- Configuration des plugins Maven -->
     <build>
-        <pluginManagement>
         <plugins>
+            <!-- Configuration du plugin Maven Compiler -->
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>17</source>
+                    <target>17</target>
+                </configuration>
+            </plugin>
+
+            <!-- Configuration du plugin Maven Surefire pour les tests -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.1.0</version>
                 <configuration>
@@ -62,21 +75,17 @@
                     </properties>
                 </configuration>
             </plugin>
-        </plugins>
-        </pluginManagement>
-        <plugins>
+
+            <!-- Configuration du plugin Maven Site -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>4.0.0-M7</version>
                 <configuration>
-                    <source>17</source>
-                    <target>17</target>
+                    <!-- Vous pouvez ajouter des configurations spécifiques ici -->
                 </configuration>
-
             </plugin>
         </plugins>
-
-
     </build>
 
 
