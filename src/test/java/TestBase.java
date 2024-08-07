@@ -106,4 +106,9 @@ public class TestBase {
         mbaSpecialitesPage.selectCity("Paris");
         mbaSpecialitesPage.clickFashionPage();
     }
+    @Test
+    public void t009_fashionIndustrie(){
+        CommunicationFashionPage communicationFashionPage = new CommunicationFashionPage(driver);
+        communicationFashionPage.clickStartVideo();
+    }
 }
