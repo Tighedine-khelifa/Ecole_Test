@@ -23,11 +23,11 @@ public class TestBase {
         } else if (browser.equals("Firefox")) {
             WebDriverManager.firefoxdriver().setup();
             driver = new FirefoxDriver();
-            
+
         } else if (browser.equals("edge")) {
             WebDriverManager.edgedriver().setup();
             driver = new EdgeDriver();
-            
+
         }
 
 
