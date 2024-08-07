@@ -106,5 +106,7 @@ public class TestBase {
         mbaSpecialitesPage.selectCity("Paris");
 
 
+
+
     }
 }
