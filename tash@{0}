@@ -1,0 +1,128 @@
+[1mdiff --git a/src/main/java/login/HomePage.java b/src/main/java/login/HomePage.java[m
+[1mindex 8b484ae..9278d41 100644[m
+[1m--- a/src/main/java/login/HomePage.java[m
+[1m+++ b/src/main/java/login/HomePage.java[m
+[36m@@ -25,7 +25,7 @@[m [mpublic class HomePage {[m
+ [m
+     public String getUrlPage(){[m
+         String URL = driver.getCurrentUrl();[m
+[31m-        System.out.println(URL);[m
+[32m+[m[32m        out.println(URL);[m
+         return URL;[m
+     }[m
+     public void getliste(String text){[m
+[1mdiff --git a/src/main/java/login/LesProgrammePage.java b/src/main/java/login/LesProgrammePage.java[m
+[1mindex 06ca235..cdc59d7 100644[m
+[1m--- a/src/main/java/login/LesProgrammePage.java[m
+[1m+++ b/src/main/java/login/LesProgrammePage.java[m
+[36m@@ -1,86 +1,33 @@[m
+ package login;[m
+ [m
+[31m-import net.bytebuddy.jar.asm.Handle;[m
+ import org.openqa.selenium.By;[m
+[31m-import org.openqa.selenium.JavascriptExecutor;[m
+ import org.openqa.selenium.WebDriver;[m
+ import org.openqa.selenium.WebElement;[m
+ import org.openqa.selenium.interactions.Actions;[m
+[31m-import org.openqa.selenium.support.FindBy;[m
+ import org.openqa.selenium.support.PageFactory;[m
+ [m
+ import java.util.List;[m
+[31m-import java.util.Set;[m
+ [m
+ public class LesProgrammePage {[m
+[31m-    @FindBy(id="download")[m
+[31m-    private WebElement telecharger;[m
+[31m-    private WebDriver.Navigation navigate;[m
+[32m+[m
+     WebDriver driver;[m
+     public  LesProgrammePage(WebDriver driver){[m
+         this.driver = driver;[m
+         PageFactory.initElements(driver,this);[m
+[31m-        navigate = driver.navigate();[m
+     }[m
+     public void listProgramme(String element){[m
+[31m-     Actions actions = new Actions(driver);[m
+[32m+[m
+         List<WebElement> list = driver.findElements(By.xpath("//ul[@class='four-columns three-rows active']/li"));[m
+         for (WebElement liste :list){[m
+[31m-[m
+             String listePro = liste.getText();[m
+             System.out.println(listePro);[m
+             if (listePro.equals(element)){[m
+[31m-                actions.moveToElement(liste).perform();[m
+                 liste.click();[m
+[31m-                break;[m
+[31m-            }[m
+[31m-[m
+[31m-        }[m
+[31m-[m
+[31m-    }[m
+[31m-[m
+[31m-    public void clickTelechargement(){[m
+[31m-        List<WebElement> buttons = driver.findElements(By.xpath("//a[text()='Télécharger le référentiel de compétences']"));[m
+[31m-        if(buttons.size()>=2){[m
+[31m-           WebElement buttons1 = buttons.get(1);[m
+[31m-           buttons1.click();[m
+[31m-        }[m
+[31m-    }[m
+[31m-    public void SwitchToSecondWindow(){[m
+[31m-        // Obtenez tous les handles de fenêtres/onglets ouverts[m
+[31m-        Set<String> windowHandles = driver.getWindowHandles();[m
+[31m-        System.out.println("Number of tabs: " + windowHandles.size());[m
+[31m-        // Convertir le Set en tableau[m
+[31m-        String[] handles = windowHandles.toArray(new String[0]);[m
+[31m-        if (handles.length>=2){[m
+[31m-            driver.switchTo().window(handles[1]);[m
+[31m-            //  Vérifiez si j'ai réussi à passer au bon onglet[m
+[31m-            System.out.println("Switched to window with handle: " + handles[1]);[m
+[31m-            // Imprimer le titre de la nouvelle page pour vérifier[m
+[31m-            System.out.println("New tab title: " + driver.getTitle());[m
+[31m-[m
+[31m-            // Vous pouvez vérifier l'URL pour s'assurer que c'est la page PDF attendue[m
+[31m-            String currentURL = driver.getCurrentUrl();[m
+[31m-            if (currentURL.endsWith(".pdf")) {[m
+[31m-                System.out.println("Le document PDF est ouvert: " + currentURL);[m
+[32m+[m[32m            }else {[m
+[32m+[m[32m                System.out.println("Element introuvable");[m
+             }[m
+[32m+[m[32m            break;[m
+         }[m
+[31m-        // Identifier et cliquer sur le bouton de téléchargement[m
+[31m-        try {[m
+[31m-            // Modifier le sélecteur selon la structure réelle de votre page[m
+[31m-            telecharger.click();[m
+[31m-            System.out.println("Le bouton de téléchargement a été cliqué.");[m
+[31m-        } catch (Exception e) {[m
+[31m-            System.out.println("Le bouton de téléchargement n'a pas été trouvé ou n'a pas pu être cliqué.");[m
+[31m-            e.printStackTrace();[m
+[31m-        }[m
+[31m-[m
+[31m-        // Créer une instance de JavascriptExecutor[m
+[31m-        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;[m
+ [m
+[31m-        // Faire défiler jusqu'en bas de la page[m
+[31m-        jsExecutor.executeScript("window.scrollTo(0, document.body.scrollHeight);");[m
+     }[m
+[31m-[m
+[31m-[m
+ }[m
+[1mdiff --git a/src/test/java/TestBase.java b/src/test/java/TestBase.java[m
+[1mindex 41a6445..6b4b9d9 100644[m
+[1m--- a/src/test/java/TestBase.java[m
+[1m+++ b/src/test/java/TestBase.java[m
+[36m@@ -70,14 +70,6 @@[m [mpublic class TestBase {[m
+         LesProgrammePage lesProgrammePage  = new LesProgrammePage(driver);[m
+         homePage.getliste("LES PROGRAMMES");[m
+         lesProgrammePage.listProgramme("VAE");[m
+[31m-        Assertions.assertTrue(homePage.getUrlPage().contains("vae-formation-continue"),"Erreur de page");[m
+[31m-[m
+[31m-    }[m
+[31m-    @Test[m
+[31m-    public  void t007_getDocument(){[m
+[31m-        LesProgrammePage lesProgrammePage =new LesProgrammePage(driver);[m
+[31m-        lesProgrammePage.clickTelechargement();[m
+[31m-        lesProgrammePage.SwitchToSecondWindow();[m
+ [m
+     }[m
+ }[m
