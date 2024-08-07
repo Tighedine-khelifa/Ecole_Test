@@ -104,5 +104,6 @@ public class TestBase {
         MbaSpecialitesPage mbaSpecialitesPage = new MbaSpecialitesPage(driver);
         mbaSpecialitesPage.selectLesThematiques("Luxe");
         mbaSpecialitesPage.selectCity("Paris");
+        mbaSpecialitesPage.clickFashionPage();
     }
 }
