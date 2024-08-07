@@ -46,46 +46,31 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Ajoutez les éléments suivants à l'intérieur de la balise <dependencies> -->
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-site-plugin</artifactId>
+            <version>4.0.0-M7</version>
 
+        </dependency>
     </dependencies>
-    <!-- Configuration des plugins Maven -->
+    <!-- Ajoutez la configuration du plugin Maven Surefire à l'intérieur de la balise <build> -->
     <build>
-        <plugins>
-            <!-- Configuration du plugin Maven Compiler -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>17</source>
-                    <target>17</target>
-                </configuration>
-            </plugin>
 
-            <!-- Configuration du plugin Maven Surefire pour les tests -->
+        <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>3.0.0-M7</version>
                 <configuration>
-                    <properties>
-                        <configurationParameters>
-                            <junit.platform.reporting.open.xml.enabled>true</junit.platform.reporting.open.xml.enabled>
-                            <junit.platform.reporting.output.dir>target/surefire-reports</junit.platform.reporting.output.dir>
-                        </configurationParameters>
-                    </properties>
-                </configuration>
-            </plugin>
 
-            <!-- Configuration du plugin Maven Site -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-site-plugin</artifactId>
-                <version>4.0.0-M7</version>
-                <configuration>
-                    <!-- Vous pouvez ajouter des configurations spécifiques ici -->
+                    <testFailureIgnore> false</testFailureIgnore>
+
                 </configuration>
             </plugin>
         </plugins>
+
+
     </build>
 
 

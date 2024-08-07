@@ -1,11 +1,14 @@
 package login;
 
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+
+import java.util.Set;
 
 public class LoginPage {
 
@@ -92,6 +95,7 @@ public class LoginPage {
             zipCode.sendKeys("94300");
             city.sendKeys("tadart");
         }
+
 
 
     }
