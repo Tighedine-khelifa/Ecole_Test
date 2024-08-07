@@ -16,6 +16,7 @@ public class MbaSpecialitesPage {
 
     @FindBy(css = "a[href='https://www.efap.com/formation-communication/mba-mode-et-communication']")
     private WebElement enSavoirPlus;
+
     private WebDriver driver;
     public MbaSpecialitesPage(WebDriver driver){
         this.driver = driver;
@@ -60,5 +61,6 @@ public class MbaSpecialitesPage {
          enSavoirPlus.click();
          return  new CommunicationFashionPage(driver);
     }
+
 
 }
