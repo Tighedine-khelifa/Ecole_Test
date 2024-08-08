@@ -32,6 +32,7 @@ public class TestBase {
         }
 
 
+
         driver.get("https://www.efap.com/agenda");
         driver.manage().window().maximize();
 
