@@ -98,6 +98,7 @@ public class LoginPage {
 
 
 
+
     }
     public void setCheckDoc(){
         if (checkDoc.isSelected()) {
