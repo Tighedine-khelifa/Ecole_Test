@@ -11,6 +11,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import java.time.Duration;
 @TestMethodOrder(MethodOrderer.MethodName.class)
 
+
 public class TestBase {
     public static String browser = "edge" ;
     public static WebDriver driver;
