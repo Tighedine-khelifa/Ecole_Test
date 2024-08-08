@@ -15,6 +15,7 @@ public class CommunicationFashionPage {
 
 
 
+
     WebDriver driver;
     public CommunicationFashionPage(WebDriver driver){
         this.driver = driver;
