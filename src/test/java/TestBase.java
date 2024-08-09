@@ -11,6 +11,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import java.time.Duration;
 @TestMethodOrder(MethodOrderer.MethodName.class)
 
+
 public class TestBase {
     public static String browser = "edge" ;
     public static WebDriver driver;
@@ -23,6 +24,7 @@ public class TestBase {
         } else if (browser.equals("Firefox")) {
             WebDriverManager.firefoxdriver().setup();
             driver = new FirefoxDriver();
+
 
         } else if (browser.equals("edge")) {
             WebDriverManager.edgedriver().setup();
@@ -106,11 +108,11 @@ public class TestBase {
         mbaSpecialitesPage.selectCity("Paris");
 
 
-
-
-
-
-
-
+        mbaSpecialitesPage.clickFashionPage();
+    }
+    @Test
+    public void t009_fashionIndustrie(){
+        CommunicationFashionPage communicationFashionPage = new CommunicationFashionPage(driver);
+        communicationFashionPage.clickStartVideo();
     }
 }
