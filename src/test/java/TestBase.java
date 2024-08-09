@@ -99,6 +99,7 @@ public class TestBase {
         homePage.getUrlPage();
         lesProgrammePage.ouvrirUneNouvelleFenetre();
 
+
     }
     @Test
     public void t008_choixDesSpécialites(){
@@ -111,6 +112,12 @@ public class TestBase {
     public void t009_fashionIndustrie(){
         CommunicationFashionPage communicationFashionPage = new CommunicationFashionPage(driver);
         communicationFashionPage.clickStartVideo();
-        communicationFashionPage.clickReseauFacebook();
+        communicationFashionPage.clickReseauSociaux("fb");
+        communicationFashionPage.gererLesFenteres();
+        communicationFashionPage.clickReseauSociaux("tw");
+        communicationFashionPage.clickReseauSociaux("ig");
+        communicationFashionPage.clickReseauSociaux("tk");
+        communicationFashionPage.clickReseauSociaux("lk");
+        communicationFashionPage.fermerToutesLesfenetres();
     }
 }
