@@ -97,7 +97,7 @@ public class TestBase {
         lesProgrammePage.clickTelechargement();
         lesProgrammePage.clickMbaSpcialises();
         homePage.getUrlPage();
-        lesProgrammePage.ouvrirUneNouvelleFenetre("MBA Communication Spécialisés EFAP - École de Communication EFAP");
+        lesProgrammePage.ouvrirUneNouvelleFenetre();
 
     }
     @Test
@@ -111,5 +111,6 @@ public class TestBase {
     public void t009_fashionIndustrie(){
         CommunicationFashionPage communicationFashionPage = new CommunicationFashionPage(driver);
         communicationFashionPage.clickStartVideo();
+        communicationFashionPage.clickReseauFacebook();
     }
 }
