@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -62,24 +61,28 @@ public class CommunicationFashionPage {
         }
     }
 
-public void clickReseauFacebook(){
-    List<WebElement>   reseauxSociaux = driver.findElements(By.cssSelector("div[class='rs']>a"));
-    String mainHandles = driver.getWindowHandle();
-        for (WebElement reseau :reseauxSociaux){
-            String reseauA= reseau.getAttribute("class");
+    public void clickReseauSociaux(String Reseau) {
+        List<WebElement>   reseauxSociaux = driver.findElements(By.cssSelector("div[class='rs']>a"));
+        for (WebElement reseau : reseauxSociaux) {
+            String reseauA = reseau.getAttribute("class");
             System.out.println(reseauA);
-            if (reseauA.equals("fb")){
+            if (reseauA.equals(Reseau)) {
                 reseau.click();
                 break;
             }
         }
+    }
+public void gererLesFenteres(){
+
+    String mainHandles = driver.getWindowHandle();
+
        Set<String> windows = driver.getWindowHandles();
         List<String> listWindows = new ArrayList<>(windows);
         for (String window1:listWindows){
             if (!window1.equals(mainHandles)){
                 driver.switchTo().window(window1);
 
-              WebElement Accepte = driver.findElement(By.cssSelector("body > div.__fb-light-mode.x1n2onr6.x1vjfegm > div.x9f619.x1n2onr6.x1ja2u2z > div > div.x1uvtmcs.x4k7w5x.x1h91t0o.x1beo9mf.xaigb6o.x12ejxvf.x3igimt.xarpa2k.xedcshv.x1lytzrv.x1t2pt76.x7ja8zs.x1n2onr6.x1qrby5j.x1jfb8zj > div > div > div > div > div.x1exxf4d.x13fuv20.x178xt8z.x1l90r2v.x1pi30zi.x1swvt13 > div > div:nth-child(2) > div.x1i10hfl.xjbqb8w.x1ejq31n.xd10rxx.x1sy0etr.x17r0tee.x972fbf.xcfux6l.x1qhh985.xm0m39n.x1ypdohk.xe8uvvx.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.xexx8yu.x4uap5.x18d9i69.xkhd6sd.x16tdsg8.x1hl2dhg.xggy1nq.x1o1ewxj.x3x9cwd.x1e5q0jg.x13rtm0m.x87ps6o.x1lku1pv.x1a2a7pz.x9f619.x3nfvp2.xdt5ytf.xl56j7k.x1n2onr6.xh8yej3 > div"));
+                WebElement Accepte = driver.findElement(By.cssSelector("body > div.__fb-light-mode.x1n2onr6.x1vjfegm > div.x9f619.x1n2onr6.x1ja2u2z > div > div.x1uvtmcs.x4k7w5x.x1h91t0o.x1beo9mf.xaigb6o.x12ejxvf.x3igimt.xarpa2k.xedcshv.x1lytzrv.x1t2pt76.x7ja8zs.x1n2onr6.x1qrby5j.x1jfb8zj > div > div > div > div > div.x1exxf4d.x13fuv20.x178xt8z.x1l90r2v.x1pi30zi.x1swvt13 > div > div:nth-child(2) > div.x1i10hfl.xjbqb8w.x1ejq31n.xd10rxx.x1sy0etr.x17r0tee.x972fbf.xcfux6l.x1qhh985.xm0m39n.x1ypdohk.xe8uvvx.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.xexx8yu.x4uap5.x18d9i69.xkhd6sd.x16tdsg8.x1hl2dhg.xggy1nq.x1o1ewxj.x3x9cwd.x1e5q0jg.x13rtm0m.x87ps6o.x1lku1pv.x1a2a7pz.x9f619.x3nfvp2.xdt5ytf.xl56j7k.x1n2onr6.xh8yej3 > div"));
                 Accepte.click();
                 driver.close();
                 break;
@@ -89,6 +92,18 @@ public void clickReseauFacebook(){
         driver.switchTo().window(mainHandles);
 
 
+}
+
+public void fermerToutesLesfenetres(){
+        String handle1 = driver.getWindowHandle();
+        Set<String> Handles = driver.getWindowHandles();
+        System.out.println(Handles);
+        for (String window:Handles){
+            if (!window.equals(handle1)){
+                driver.close();
+                break;
+            }
+        }
 }
 
 }
