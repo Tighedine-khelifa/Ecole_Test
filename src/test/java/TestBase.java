@@ -121,3 +121,4 @@ public class TestBase {
         communicationFashionPage.fermerToutesLesfenetres();
     }
 }
+
