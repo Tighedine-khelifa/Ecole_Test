@@ -100,9 +100,11 @@ public void fermerToutesLesfenetres(){
         System.out.println(Handles);
         for (String window:Handles){
             if (!window.equals(handle1)){
+                driver.switchTo().window(window);
                 driver.close();
-                break;
+
             }
+
         }
 }
 
