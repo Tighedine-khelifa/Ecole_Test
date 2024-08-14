@@ -24,21 +24,21 @@ public class HomePage {
     }
 
     public String getUrlPage(){
-        String URL = driver.getCurrentUrl();
-        System.out.println(URL);
-        return URL;
+        String url = driver.getCurrentUrl();
+        return url;
     }
     public void getliste(String text){
-        Actions actions = new Actions(driver);
 
-        List<WebElement> Liste= header.findElements(By.tagName("a"));
 
-        out.println("Found " + Liste.size() + " elements inside the header:");
-        for (WebElement element:Liste){
+        List<WebElement> liste= header.findElements(By.tagName("a"));
+
+        out.println("Found " + liste.size() + " elements inside the header:");
+        for (WebElement element:liste){
             String textElement = element.getText();
             out.println(textElement);
 
             if (textElement.equals(text)){
+                Actions actions = new Actions(driver);
                actions.moveToElement(element).perform();
                 return;
             }

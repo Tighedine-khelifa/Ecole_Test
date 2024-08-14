@@ -8,10 +8,10 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.time.Duration;
 
-@TestMethodOrder(MethodOrderer.MethodName.class)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class TestBase {
-    public static String browser = "edge";
-    public static WebDriver driver;
+   static String browser = "edge";
+    static WebDriver driver;
 
     @BeforeAll
     public static void setUp() {
@@ -31,8 +31,9 @@ public class TestBase {
     }
 
     @Test
+    @Order(1)
     @DisplayName("US1 - Verify Login and Initial Page Elements")
-  void t001_LoginAndInitialPageElements() {
+  void LoginAndInitialPageElements() {
         LoginPage loginPage = new LoginPage(driver);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(7));
         loginPage.acceptAlert();
@@ -41,11 +42,12 @@ public class TestBase {
     }
 
     @Test
+    @Order(2)
     @DisplayName("US2 - Fill and Submit Form, Verify Success Message")
-    void t002_FormSubmissionAndSuccessMessage() {
+    void lormSubmissionAndSuccessMessage() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.setForm();
-        loginPage.ClickNiveauEtude("Seconde");
+        loginPage.clickNiveauEtude("Seconde");
         loginPage.slectCampus("Lille");
         loginPage.modeReception("Papier");
         loginPage.setCheckDoc();
@@ -55,16 +57,18 @@ public class TestBase {
     }
 
     @Test
+    @Order(3)
     @DisplayName("US3 - Verify Home Page Navigation")
-    void t003_HomePageNavigation() {
+    void lomePageNavigation() {
         HomePage homePage = new HomePage(driver);
         homePage.getUrlPage();
         homePage.getliste("NOUS RENCONTRER");
     }
 
     @Test
+    @Order(4)
     @DisplayName("US4 - Navigate to Festival de Cannes Page")
-    void t004_NavigateToFestivalDeCannesPage() {
+    void navigateToFestivalDeCannesPage() {
         HomePage homePage = new HomePage(driver);
         FestivalDeCannesPage festivalDeCannesPage = new FestivalDeCannesPage(driver);
         homePage.getliste("NOS ACTUALITÉS");
@@ -72,16 +76,18 @@ public class TestBase {
     }
 
     @Test
+    @Order(5)
     @DisplayName("US5 - Verify Activities and Festival Page")
-    void t005_VerifyActivitiesAndFestivalPage() {
+    void verifyActivitiesAndFestivalPage() {
         NosActivitesPage nosActivitesPage = new NosActivitesPage(driver);
         nosActivitesPage.getTitleNosActivites();
         nosActivitesPage.clickFestivaleDeCannesBas();
     }
 
     @Test
+    @Order(6)
     @DisplayName("US6 - Verify Program List and URL")
-    void t006_VerifyProgramListAndUrl() {
+    void verifyProgramListAndUrl() {
         HomePage homePage = new HomePage(driver);
         LesProgrammePage lesProgrammePage = new LesProgrammePage(driver);
         homePage.getliste("LES PROGRAMMES");
@@ -90,8 +96,9 @@ public class TestBase {
     }
 
     @Test
+    @Order(7)
     @DisplayName("US7 - Verify Document Download and New Window")
-    void t007_DocumentDownloadAndNewWindow() {
+    void documentDownloadAndNewWindow() {
         LesProgrammePage lesProgrammePage = new LesProgrammePage(driver);
         HomePage homePage = new HomePage(driver);
         lesProgrammePage.clickTelechargement();
@@ -101,8 +108,9 @@ public class TestBase {
     }
 
     @Test
+    @Order(8)
     @DisplayName("US8 - Select Specialties and City")
-    void t008_SelectSpecialtiesAndCity() {
+    void selectSpecialtiesAndCity() {
         MbaSpecialitesPage mbaSpecialitesPage = new MbaSpecialitesPage(driver);
         mbaSpecialitesPage.selectLesThematiques("Luxe");
         mbaSpecialitesPage.selectCity("Paris");
@@ -110,8 +118,9 @@ public class TestBase {
     }
 
     @Test
+    @Order(9)
     @DisplayName("US9 - Interact with Fashion Industry Social Media")
-    void t009_FashionIndustrySocialMediaInteraction() {
+    void fashionIndustrySocialMediaInteraction() {
         CommunicationFashionPage communicationFashionPage = new CommunicationFashionPage(driver);
         communicationFashionPage.clickStartVideo();
         communicationFashionPage.clickReseauSociaux("fb");

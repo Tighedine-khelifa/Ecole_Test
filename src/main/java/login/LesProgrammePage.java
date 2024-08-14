@@ -29,13 +29,14 @@ public class LesProgrammePage {
 
     }
     public void listProgramme(String element){
-     Actions actions = new Actions(driver);
+
         List<WebElement> list = driver.findElements(By.xpath("//ul[@class='four-columns three-rows active']/li"));
         for (WebElement liste :list){
 
             String listePro = liste.getText();
             System.out.println(listePro);
             if (listePro.equals(element)){
+                Actions actions = new Actions(driver);
                 actions.moveToElement(liste).perform();
                 liste.click();
 
