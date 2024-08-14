@@ -9,6 +9,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import java.time.Duration;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+
+
+
 public class TestBase {
    static String browser = "edge";
     static WebDriver driver;
