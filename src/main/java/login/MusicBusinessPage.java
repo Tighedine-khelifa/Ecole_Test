@@ -45,6 +45,7 @@ public class MusicBusinessPage {
             }
 
         }
+
         // Revenir à la fenêtre principale
         driver.switchTo().window(windowList.get(0));
         System.out.println(driver.getCurrentUrl());
