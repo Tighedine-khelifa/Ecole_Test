@@ -133,5 +133,16 @@ public class TestBase {
         communicationFashionPage.clickReseauSociaux("tk");
         communicationFashionPage.clickReseauSociaux("lk");
         communicationFashionPage.fermerToutesLesfenetres();
+
+        String urlPage = driver.getCurrentUrl();
+        Assertions.assertTrue(urlPage.contains("mba-mode-et-communication"),"Erreur de page");
+    }
+    @Test
+    @Order(10)
+    @DisplayName("US10 - Aller sur la page music business management")
+    void musiqueBusinessManagement(){
+        MusicBusinessPage musicBusinessPage = new MusicBusinessPage(driver);
+        musicBusinessPage.clickMusicBusiness();
+
     }
 }

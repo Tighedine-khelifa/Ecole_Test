@@ -106,6 +106,7 @@ public void fermerToutesLesfenetres(){
             }
 
         }
+        driver.switchTo().window(handle1);
 }
 
 }
