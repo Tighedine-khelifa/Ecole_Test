@@ -1,4 +1,3 @@
-
 import io.github.bonigarcia.wdm.WebDriverManager;
 import login.*;
 import org.junit.jupiter.api.*;
@@ -7,68 +6,73 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-
 import java.time.Duration;
-@TestMethodOrder(MethodOrderer.MethodName.class)
+
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+
 
 
 public class TestBase {
-    public static String browser = "edge" ;
-    public static WebDriver driver;
+   static String browser = "edge";
+    static WebDriver driver;
 
     @BeforeAll
-    public static void SetUp(){
-        if (browser.equals("chrome")){
+    public static void setUp() {
+        if ("chrome".equals(browser)) {
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
-        } else if (browser.equals("Firefox")) {
+        } else if ("firefox".equals(browser)) {
             WebDriverManager.firefoxdriver().setup();
             driver = new FirefoxDriver();
 
-
-        } else if (browser.equals("edge")) {
+        } else if ("edge".equals(browser)) {
             WebDriverManager.edgedriver().setup();
             driver = new EdgeDriver();
-
         }
-
 
         driver.get("https://www.efap.com/agenda");
         driver.manage().window().maximize();
-
     }
+
     @Test
-    public void t001_login(){
-        LoginPage loginPage2 = new LoginPage(driver);
+    @Order(1)
+    @DisplayName("US1 - Verify Login and Initial Page Elements")
+  void LoginAndInitialPageElements() {
+        LoginPage loginPage = new LoginPage(driver);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(7));
-        loginPage2.acceptAlert();
-        loginPage2.clickInformer();
-        loginPage2.closeSetPub();
-
-
+        loginPage.acceptAlert();
+        loginPage.clickInformer();
+        loginPage.closeSetPub();
     }
+
     @Test
-    public void t002_closeNavigate(){
-        LoginPage loginPage2 = new LoginPage(driver);
-        loginPage2.setForm();
-        loginPage2.ClickNiveauEtude("Seconde");
-        loginPage2.slectCampus("Lille");
-        loginPage2.modeReception("Papier");
-        loginPage2.setCheckDoc();
-        loginPage2.clickEnrigestrer();
-        Assertions.assertEquals(loginPage2.getMerci(),"Merci","rien");
-        loginPage2.clickInfomerPage();
-
-
+    @Order(2)
+    @DisplayName("US2 - Fill and Submit Form, Verify Success Message")
+    void lormSubmissionAndSuccessMessage() {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.setForm();
+        loginPage.clickNiveauEtude("Seconde");
+        loginPage.slectCampus("Lille");
+        loginPage.modeReception("Papier");
+        loginPage.setCheckDoc();
+        loginPage.clickEnrigestrer();
+        Assertions.assertEquals("Merci", loginPage.getMerci(), "Success message did not match");
+        loginPage.clickInfomerPage();
     }
+
     @Test
-    public void t003_informertest(){
-       HomePage homePage = new HomePage(driver);
+    @Order(3)
+    @DisplayName("US3 - Verify Home Page Navigation")
+    void lomePageNavigation() {
+        HomePage homePage = new HomePage(driver);
         homePage.getUrlPage();
         homePage.getliste("NOUS RENCONTRER");
     }
+
     @Test
-    public void t004_nosActualités(){
+    @Order(4)
+    @DisplayName("US4 - Navigate to Festival de Cannes Page")
+    void navigateToFestivalDeCannesPage() {
         HomePage homePage = new HomePage(driver);
         FestivalDeCannesPage festivalDeCannesPage = new FestivalDeCannesPage(driver);
         homePage.getliste("NOS ACTUALITÉS");
@@ -76,34 +80,41 @@ public class TestBase {
     }
 
     @Test
-    public void t005_nosActivités(){
+    @Order(5)
+    @DisplayName("US5 - Verify Activities and Festival Page")
+    void verifyActivitiesAndFestivalPage() {
         NosActivitesPage nosActivitesPage = new NosActivitesPage(driver);
         nosActivitesPage.getTitleNosActivites();
         nosActivitesPage.clickFestivaleDeCannesBas();
     }
 
     @Test
-    public void t006_lesProgrammes(){
+    @Order(6)
+    @DisplayName("US6 - Verify Program List and URL")
+    void verifyProgramListAndUrl() {
         HomePage homePage = new HomePage(driver);
-        LesProgrammePage lesProgrammePage  = new LesProgrammePage(driver);
+        LesProgrammePage lesProgrammePage = new LesProgrammePage(driver);
         homePage.getliste("LES PROGRAMMES");
         lesProgrammePage.listProgramme("VAE");
-        Assertions.assertTrue(homePage.getUrlPage().contains("vae-formation-continue"),"Erreur de page");
-
+        Assertions.assertTrue(homePage.getUrlPage().contains("vae-formation-continue"), "URL did not contain expected text");
     }
+
     @Test
-    public  void t007_getDocument(){
-        LesProgrammePage lesProgrammePage =new LesProgrammePage(driver);
+    @Order(7)
+    @DisplayName("US7 - Verify Document Download and New Window")
+    void documentDownloadAndNewWindow() {
+        LesProgrammePage lesProgrammePage = new LesProgrammePage(driver);
         HomePage homePage = new HomePage(driver);
         lesProgrammePage.clickTelechargement();
         lesProgrammePage.clickMbaSpcialises();
         homePage.getUrlPage();
         lesProgrammePage.ouvrirUneNouvelleFenetre();
-
-
     }
+
     @Test
-    public void t008_choixDesSpécialites(){
+    @Order(8)
+    @DisplayName("US8 - Select Specialties and City")
+    void selectSpecialtiesAndCity() {
         MbaSpecialitesPage mbaSpecialitesPage = new MbaSpecialitesPage(driver);
         mbaSpecialitesPage.selectLesThematiques("Luxe");
         mbaSpecialitesPage.selectCity("Paris");
@@ -111,8 +122,11 @@ public class TestBase {
 
         mbaSpecialitesPage.clickFashionPage();
     }
+
     @Test
-    public void t009_fashionIndustrie(){
+    @Order(9)
+    @DisplayName("US9 - Interact with Fashion Industry Social Media")
+    void fashionIndustrySocialMediaInteraction() {
         CommunicationFashionPage communicationFashionPage = new CommunicationFashionPage(driver);
         communicationFashionPage.clickStartVideo();
         communicationFashionPage.clickReseauSociaux("fb");
@@ -122,5 +136,16 @@ public class TestBase {
         communicationFashionPage.clickReseauSociaux("tk");
         communicationFashionPage.clickReseauSociaux("lk");
         communicationFashionPage.fermerToutesLesfenetres();
+
+        String urlPage = driver.getCurrentUrl();
+        Assertions.assertTrue(urlPage.contains("mba-mode-et-communication"),"Erreur de page");
+    }
+    @Test
+    @Order(10)
+    @DisplayName("US10 - Aller sur la page music business management")
+    void musiqueBusinessManagement(){
+        MusicBusinessPage musicBusinessPage = new MusicBusinessPage(driver);
+        musicBusinessPage.clickMusicBusiness();
+
     }
 }

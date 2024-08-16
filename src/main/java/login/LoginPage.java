@@ -53,8 +53,9 @@ public class LoginPage {
         PageFactory.initElements(driver,this);
     }
     public void acceptAlert(){
-        Actions actions = new Actions(driver);
+
         if (alertAccept.isEnabled()) {
+            Actions actions = new Actions(driver);
             actions.doubleClick(alertAccept).perform();
         }
     }
@@ -74,7 +75,7 @@ public class LoginPage {
 
     }
 
-    public void ClickNiveauEtude(String niveau){
+    public void clickNiveauEtude(String niveau){
         Select select = new Select(niveauEtude);
         select.selectByVisibleText(niveau);
     }
