@@ -1,11 +1,16 @@
 package login;
 
 
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -45,9 +50,19 @@ public class MusicBusinessPage {
             }
 
         }
+
         // Revenir à la fenêtre principale
         driver.switchTo().window(windowList.get(0));
         System.out.println(driver.getCurrentUrl());
-         driver.switchTo().alert();
+
+        WebDriverWait mywait = new WebDriverWait(driver,Duration.ofSeconds(3));
+        try {
+            mywait.until(ExpectedConditions.alertIsPresent());
+            Alert myalert = driver.switchTo().alert();
+            System.out.println(myalert.getText());
+        }catch(TimeoutException e) {
+            System.out.println("pas d'alert");
+        }
+
     }
 }
