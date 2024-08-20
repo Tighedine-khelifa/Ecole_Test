@@ -24,6 +24,7 @@ public class TestBase {
         } else if ("firefox".equals(browser)) {
             WebDriverManager.firefoxdriver().setup();
             driver = new FirefoxDriver();
+
         } else if ("edge".equals(browser)) {
             WebDriverManager.edgedriver().setup();
             driver = new EdgeDriver();
@@ -117,6 +118,8 @@ public class TestBase {
         MbaSpecialitesPage mbaSpecialitesPage = new MbaSpecialitesPage(driver);
         mbaSpecialitesPage.selectLesThematiques("Luxe");
         mbaSpecialitesPage.selectCity("Paris");
+
+
         mbaSpecialitesPage.clickFashionPage();
     }
 
